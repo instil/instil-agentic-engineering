@@ -29,5 +29,12 @@
 
 @media (max-width: 640px) {
   .detail-drawer { width: 100vw; max-width: 100vw; }
-  .closing-statement { grid-template-columns: 1fr; gap: 16px; }
+  .closing-statement { 
+    grid-template-columns: 1fr; 
+    gap: 32px; 
+    padding: 32px 0;
+  }
+  .closing-statement blockquote:last-child {
+    padding: 24px 0;
+  }
 }

@@ -51,7 +51,7 @@
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 3px;
-  background: var(--accent);
+  background: linear-gradient(90deg, #7a3cff 0%, #3a7bff 50%, #2ec7c9 100%);
   opacity: 0;
   transition: height 0.18s var(--ease-out), opacity 0.18s var(--ease-out);
 }
@@ -227,7 +227,7 @@
 }
 
 .human-section .activity-item::before { background: var(--text-muted); opacity: 0.3; }
-.agent-section .activity-item::before { background: var(--accent); opacity: 0.4; }
+.agent-section .activity-item::before { background: #3a7bff; opacity: 0.5; }
 
 /* ── Cycle note ── */
 

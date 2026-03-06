@@ -24,7 +24,7 @@
 }
 
 .agent-pill:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid #3a7bff;
   outline-offset: 2px;
 }
 
@@ -41,8 +41,8 @@
 .agent-pill:hover,
 .agent-pill:focus-visible {
   background: var(--bg-elevated);
-  border-color: var(--accent);
-  color: var(--accent);
+  border-color: #3a7bff;
+  color: #3a7bff;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

@@ -36,7 +36,7 @@
 }
 
 .theme-toggle-option.active {
-  background: var(--accent);
+  background: linear-gradient(90deg, #7a3cff 0%, #3a7bff 50%, #2ec7c9 100%);
   color: var(--accent-foreground);
   font-weight: 900;
 }

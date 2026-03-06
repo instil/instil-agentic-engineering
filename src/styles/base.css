@@ -63,6 +63,6 @@ body::before {
 
 /* Custom selection color */
 ::selection {
-  background: var(--accent);
-  color: var(--accent-foreground);
+  background: #ffffff;
+  color: #000000;
 }

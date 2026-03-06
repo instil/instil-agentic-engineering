@@ -57,8 +57,8 @@
 }
 
 .rail-pill.active .rail-pill-dot {
-  background: var(--accent);
-  border-color: var(--accent);
+  background: linear-gradient(135deg, #7a3cff 0%, #3a7bff 50%, #2ec7c9 100%);
+  border-color: #3a7bff;
 }
 
 .rail-pill-label {

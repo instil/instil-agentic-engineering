@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agentic Software Delivery Lifecycle</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- FOUC prevention: set theme before first paint -->
+  <script>
+    (function () {
+      var t =
+        localStorage.getItem('theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+
+  <script type="module" src="/src/main.js"></script>
+</head>
+
+<body>
+  <div class="progress-bar" aria-hidden="true">
+    <div class="progress-bar-fill" id="progressFill"></div>
+  </div>
+
+  <!-- Right rail nav -->
+  <aside class="rail" id="railNav" aria-label="Navigation">
+    <a class="rail-pill active" href="#section-intro" data-target="section-intro">
+      <span class="rail-pill-dot" aria-hidden="true"></span>
+      <span class="rail-pill-label">Intro</span>
+    </a>
+    <a class="rail-pill" href="#section-team" data-target="section-team">
+      <span class="rail-pill-dot" aria-hidden="true"></span>
+      <span class="rail-pill-label">Team</span>
+    </a>
+    <a class="rail-pill" href="#section-cycle" data-target="section-cycle">
+      <span class="rail-pill-dot" aria-hidden="true"></span>
+      <span class="rail-pill-label">Delivery Cycle</span>
+    </a>
+    <a class="rail-pill" href="#section-crosscut" data-target="section-crosscut">
+      <span class="rail-pill-dot" aria-hidden="true"></span>
+      <span class="rail-pill-label">Cross-cutting</span>
+    </a>
+    <a class="rail-pill" href="#section-practice" data-target="section-practice">
+      <span class="rail-pill-dot" aria-hidden="true"></span>
+      <span class="rail-pill-label">Practice</span>
+    </a>
+    <a class="rail-pill" href="#section-principles" data-target="section-principles">
+      <span class="rail-pill-dot" aria-hidden="true"></span>
+      <span class="rail-pill-label">Principles</span>
+    </a>
+    <a class="rail-pill" href="#section-cta" data-target="section-cta">
+      <span class="rail-pill-dot" aria-hidden="true"></span>
+      <span class="rail-pill-label">Next Steps</span>
+    </a>
+  </aside>
+
+  <div class="theme-toggle" id="themeToggle" role="switch" aria-label="Toggle dark mode">
+    <div class="theme-toggle-option active" data-theme-value="light">&#9788;</div>
+    <div class="theme-toggle-option" data-theme-value="dark">&#9790;</div>
+  </div>
+
+  <main class="page">
+    <!-- Intro -->
+    <section class="chapter reveal is-visible" id="section-intro">
+      <div class="header">
+        <img src="/Instil_wordmark_white.png" alt="Instil" class="header-logo" />
+        <div class="header-eyebrow">Delivery Framework</div>
+        <h1 id="titleWrapper">Agentic <span id="splitFlapTitle"></span></h1>
+        <p>Software delivery is shifting. AI agents can now take on entire tasks, from implementing features to reviewing code and monitoring production. This document describes how Instil is adapting its delivery process to pair engineers with specialised agents at every stage, keeping engineering judgement at the centre while using agentic development to increase the pace, breadth and rigour of what teams can deliver.</p>
+      </div>
+    </section>
+
+    <!-- The Delivery Team -->
+    <section class="chapter reveal" id="section-team">
+      <div class="content-band">
+        <div class="content-band-header">
+          <h3>The Delivery Team</h3>
+          <p>Engineers and agents work in parallel at every stage, and what each focuses on shifts as the project moves forward</p>
+        </div>
+        <div class="delivery-team-grid">
+          <div class="team-role engineers">
+            <div class="team-role-label">
+              <div class="team-role-icon">E</div>
+              <div class="team-role-name">Engineers</div>
+            </div>
+            <p>Engineers own the codebase, the technical direction, stakeholder alignment and the accountability for what ships. They run discovery, make architecture decisions, evaluate agent output and steer implementation toward the intended design. Every critical decision has an engineer behind it, and all agent output goes through engineering review before it moves forward.</p>
+          </div>
+          <div class="team-role agents">
+            <div class="team-role-label">
+              <div class="team-role-icon">A</div>
+              <div class="team-role-name">Agents</div>
+            </div>
+            <p>Agents handle the implementation and analysis work across the full delivery cycle. In the early stages that means research, requirements capture and prototyping. As the team moves into build, agents take on first-pass implementation, code review, testing and security analysis. In production, they manage deployment, monitoring and incident response.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Delivery Cycle -->
+    <section class="chapter reveal" id="section-cycle">
+      <div class="content-band">
+        <div class="content-band-header">
+          <h3>The Delivery Cycle</h3>
+        </div>
+
+        <div class="timeline" id="deliveryTimeline">
+          <div class="timeline-top" role="tablist">
+            <div class="timeline-tab plan active" data-stage="plan" role="tab" tabindex="0" aria-selected="true">
+              <div class="kicker">Plan</div>
+              <div class="sub">Discovery to backlog</div>
+            </div>
+            <div class="timeline-tab build" data-stage="build" role="tab" tabindex="0" aria-selected="false">
+              <div class="kicker">Build</div>
+              <div class="sub">Implementation to review</div>
+            </div>
+            <div class="timeline-tab ship" data-stage="ship" role="tab" tabindex="0" aria-selected="false">
+              <div class="kicker">Ship</div>
+              <div class="sub">Release to production</div>
+            </div>
+          </div>
+
+          <div class="stage-content">
+            <!-- PLAN PANEL -->
+            <div class="timeline-panel plan active" data-stage="plan" role="tabpanel" aria-label="Plan stage">
+              <div class="phase-section human-section">
+                <div class="section-label">
+                  <span class="section-label-icon">E</span>
+                  Engineer Activities
+                </div>
+                <div class="activity-item">Lead discovery, assess technical feasibility, decide approach &amp; sequencing</div>
+                <div class="activity-item">Work through architectural questions before they become expensive to revisit</div>
+                <div class="activity-item">Align stakeholders on scope and priorities</div>
+              </div>
+
+              <div class="phase-section agent-section">
+                <div class="section-label">
+                  <span class="section-label-icon">A</span>
+                  Agent Activities
+                </div>
+                <div class="activity-item">Capture workshop outputs into structured requirements &amp; user stories</div>
+                <div class="activity-item">Generate PRDs, journey maps &amp; prioritised backlog</div>
+                <div class="activity-item">Produce working prototypes and build project context from existing codebase</div>
+              </div>
+
+              <div class="phase-section agent-section">
+                <div class="section-label">
+                  <span class="section-label-icon">S</span>
+                  Related Skills
+                </div>
+                <div class="agents-grid">
+                  <span class="agent-pill" role="button" tabindex="0" data-agent="meeting-summary">
+                    <svg class="pill-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/><line x1="4" y1="4.5" x2="8" y2="4.5" stroke="currentColor" stroke-width="1"/><line x1="4" y1="6.5" x2="7" y2="6.5" stroke="currentColor" stroke-width="1"/><line x1="4" y1="8" x2="6" y2="8" stroke="currentColor" stroke-width="1"/></svg>
+                    Meeting Summary
+                  </span>
+                  <span class="agent-pill" role="button" tabindex="0" data-agent="prd-writer">
+                    <svg class="pill-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 2.5H9.5V9.5H2.5V2.5Z" stroke="currentColor" stroke-width="1.5"/><line x1="4" y1="5" x2="8" y2="5" stroke="currentColor" stroke-width="1"/><line x1="4" y1="7" x2="7" y2="7" stroke="currentColor" stroke-width="1"/></svg>
+                    PRD Writer
+                  </span>
+                  <span class="agent-pill" role="button" tabindex="0" data-agent="prototype-creator">
+                    <svg class="pill-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="4" y="4" width="4" height="4" rx="0.5" stroke="currentColor" stroke-width="1"/></svg>
+                    Prototype Creator
+                  </span>
+                  <span class="agent-pill" role="button" tabindex="0" data-agent="backlog-generator">
+                    <svg class="pill-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="8" height="2" rx="0.5" stroke="currentColor" stroke-width="1"/><rect x="2" y="5" width="8" height="2" rx="0.5" stroke="currentColor" stroke-width="1"/><rect x="2" y="8" width="5" height="2" rx="0.5" stroke="currentColor" stroke-width="1"/></svg>
+                    Backlog Generator
+                  </span>
+                  <span class="agent-pill" role="button" tabindex="0" data-agent="onboarding">
+                    <svg class="pill-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M6 3V6L8 7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                    Project Onboarding
+                  </span>
+                  <span class="agent-pill" role="button" tabindex="0" data-agent="launchpad">
+                    <svg class="pill-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 2L7 5L10 6L7 7L6 10L5 7L2 6L5 5L6 2Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+                    Launchpad
+                  </span>
+                </div>
+              </div>
+
+              <div class="panel-artifacts">
+                <span class="panel-artifacts-label">Outputs</span>
+                <span class="artifact-tag">PRD</span>
+                <span class="artifact-tag">User Stories</span>
+                <span class="artifact-tag">Backlog</span>
+                <span class="artifact-tag">Prototypes</span>
+                <span class="artifact-tag">Threat Model (draft)</span>
+              </div>
+            </div>
+
+            <!-- BUILD PANEL -->
+            <div class="timeline-panel build" data-stage="build" role="tabpanel" aria-label="Build stage">
+              <div class="phase-section human-section">
+                <div class="section-label">
+                  <span class="section-label-icon">E</span>
+                  Engineer Activities
+                </div>
+                <div class="activity-item">Own system architecture, e.g. service boundaries, data models, integration patterns</div>
+                <div class="activity-item">Review agent output for correctness and fit with broader design</div>
+                <div class="activity-item">Make trade-off calls that affect the system long-term</div>
+              </div>
+
+              <div class="phase-section agent-section">
+                <div class="section-label">
+                  <span class="section-label-icon">A</span>
+                  Agent Activities
+                </div>
+                <div class="activity-item">Implement from specs and user stories across parallel workstreams</div>
+                <div class="activity-item">Run continuous review: code quality, test coverage, security reviews</div>
+                <div class="activity-item">Validate implementation against original requirements</div>
+              </div>
+
+              <div class="phase-section agent-section">
+                <div class="section-label">
+                  <span class="section-label-icon">S</span>
+                  Related Skills
+                </div>
+                <div class="agents-grid">
+                  <span class="agent-pill" role="button" tabindex="0" data-agent="code-impl">
+                    <svg class="pill-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 3L2 6L4 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 3L10 6L8 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Code Implementation
+                  </span>
+                  <span class="agent-pill" role="button" tabindex="0" data-agent="code-reviewer">
+                    <svg class="pill-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M8.5 8.5L10.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    Code Reviewer
+                  </span>
+                  <span class="agent-pill" role="button" tabindex="0" data-agent="test-reviewer">
+                    <svg class="pill-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 2H8V6C8 8 7 9 6 10C5 9 4 8 4 6V2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                    Test Quality Reviewer
+                  </span>
+                  <span class="agent-pill" role="button" tabindex="0" data-agent="req-reviewer">
+                    <svg class="pill-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2.5" y="2" width="7" height="8" rx="0.5" stroke="currentColor" stroke-width="1.5"/><path d="M4.5 5L5.5 6L7.5 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Requirements Reviewer
+                  </span>
+                  <span class="agent-pill security-agent" role="button" tabindex="0" data-agent="threat-model">
+                    <svg class="pill-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 2L9.5 3.5V6C9.5 8 8 9.5 6 10.5C4 9.5 2.5 8 2.5 6V3.5L6 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                    Threat Modelling
+                  </span>
+                  <span class="agent-pill security-agent" role="button" tabindex="0" data-agent="pen-test">
+                    <svg class="pill-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="3" stroke="currentColor" stroke-width="1.5"/><circle cx="6" cy="6" r="1" fill="currentColor"/><line x1="6" y1="2" x2="6" y2="1" stroke="currentColor" stroke-width="1.2"/><line x1="6" y1="11" x2="6" y2="10" stroke="currentColor" stroke-width="1.2"/><line x1="10" y1="6" x2="11" y2="6" stroke="currentColor" stroke-width="1.2"/><line x1="1" y1="6" x2="2" y2="6" stroke="currentColor" stroke-width="1.2"/></svg>
+                    Automated Pen Testing
+                  </span>
+                  <span class="agent-pill security-agent" role="button" tabindex="0" data-agent="sast-dast">
+                    <svg class="pill-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="4" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 1.5"/><circle cx="6" cy="6" r="1.5" fill="currentColor"/></svg>
+                    SAST &amp; DAST
+                  </span>
+                </div>
+              </div>
+
+              <div class="panel-artifacts">
+                <span class="panel-artifacts-label">Outputs</span>
+                <span class="artifact-tag">Reviewed Code</span>
+                <span class="artifact-tag">Test Suites</span>
+                <span class="artifact-tag">Security Report</span>
+                <span class="artifact-tag">Release Candidate</span>
+              </div>
+            </div>
+
+            <!-- SHIP PANEL -->
+            <div class="timeline-panel ship" data-stage="ship" role="tabpanel" aria-label="Ship stage">
+              <div class="phase-section human-section">
+                <div class="section-label">
+                  <span class="section-label-icon">E</span>
+                  Engineer Activities
+                </div>
+                <div class="activity-item">Design the observability strategy</div>
+                <div class="activity-item">Assess incidents and decide resolution approach</div>
+                <div class="activity-item">Connect production insights back to the planning backlog</div>
+              </div>
+
+              <div class="phase-section agent-section">
+                <div class="section-label">
+                  <span class="section-label-icon">A</span>
+                  Agent Activities
+                </div>
+                <div class="activity-item">Monitor environments continuously, detect anomalies in real time</div>
+                <div class="activity-item">Analyse root causes and draft fix PRs for review</div>
+                <div class="activity-item">Generate structured post-mortems that feed into the backlog</div>
+              </div>
+
+              <div class="phase-section agent-section">
+                <div class="section-label">
+                  <span class="section-label-icon">S</span>
+                  Related Skills
+                </div>
+                <div class="agents-grid">
+                  <span class="agent-pill" role="button" tabindex="0" data-agent="env-monitor">
+                    <svg class="pill-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 6H3L4 4L6 8L8 5L9 6H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Environment Monitor
+                  </span>
+                  <span class="agent-pill" role="button" tabindex="0" data-agent="postmortem">
+                    <svg class="pill-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/><line x1="4" y1="4.5" x2="8" y2="4.5" stroke="currentColor" stroke-width="1"/><line x1="4" y1="6.5" x2="7" y2="6.5" stroke="currentColor" stroke-width="1"/></svg>
+                    Post Mortem Generator
+                  </span>
+                  <span class="agent-pill" role="button" tabindex="0" data-agent="auto-patch">
+                    <svg class="pill-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 2L10 5L7 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 5H5C3.5 5 2 6.5 2 8V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    Auto Patching &amp; Bug Fixing
+                  </span>
+                </div>
+              </div>
+
+              <div class="panel-artifacts">
+                <span class="panel-artifacts-label">Outputs</span>
+                <span class="artifact-tag">Incident Reports</span>
+                <span class="artifact-tag">Usage Analytics</span>
+                <span class="artifact-tag">Improvement Recs</span>
+                <span class="artifact-tag">Post-Mortems</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cycle-note">
+          <p><strong>Artifacts flow forward:</strong> Each stage produces work that feeds the next. Plan outputs inform Build, Build artifacts enable Ship, and production insights loop back to Plan.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Crosscut Concerns -->
+    <section class="chapter reveal" id="section-crosscut">
+      <div class="content-band">
+        <div class="subsection-header">
+          <h4>Embedded at Every Stage</h4>
+          <p>Engineer review, quality and security are woven into each phase, not bolted on at the end</p>
+        </div>
+
+        <div class="crosscut-pillars">
+          <div class="crosscut-pillar human-review">
+            <div class="pillar-label">
+              <div class="pillar-icon-box">E</div>
+              <div class="pillar-name">Engineer Review</div>
+            </div>
+            <div class="pillar-tags">
+              <span class="p-tag">Sign-off on all artefacts</span>
+              <span class="p-tag">Customer review &amp; feedback</span>
+              <span class="p-tag">Steering agent outputs</span>
+              <span class="p-tag">Course correction</span>
+            </div>
+          </div>
+          <div class="crosscut-pillar quality">
+            <div class="pillar-label">
+              <div class="pillar-icon-box">Q</div>
+              <div class="pillar-name">Quality</div>
+            </div>
+            <div class="pillar-tags">
+              <span class="p-tag">Static analysis</span>
+              <span class="p-tag">Automated tests</span>
+              <span class="p-tag">Requirements validation</span>
+              <span class="p-tag">Automated alerting</span>
+              <span class="p-tag">Dashboards</span>
+            </div>
+          </div>
+          <div class="crosscut-pillar security">
+            <div class="pillar-label">
+              <div class="pillar-icon-box">S</div>
+              <div class="pillar-name">Security</div>
+            </div>
+            <div class="pillar-tags">
+              <span class="p-tag">Threat modelling</span>
+              <span class="p-tag">SAST &amp; DAST</span>
+              <span class="p-tag">Automated pen testing</span>
+              <span class="p-tag">Continuous monitoring</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Practice -->
+    <section class="chapter reveal" id="section-practice">
+      <div class="content-band">
+        <div class="content-band-header">
+          <h3>How This Plays Out in Practice</h3>
+          <p>What changes when engineers and agents work side by side across real projects</p>
+        </div>
+        <div class="in-practice-grid">
+          <div class="practice-card">
+            <h4>Where engineers spend their time</h4>
+            <p>Agents handle the volume of code generation, test writing and routine analysis. Engineers spend less time on mechanical work and more on the problems that require judgement. The engineering skill set underneath is the same one it has always been.</p>
+          </div>
+          <div class="practice-card">
+            <h4>The codebase ramp is shorter</h4>
+            <p>Agents that can ingest, navigate and explain a codebase change onboarding dramatically. Engineers still need to build real understanding of the system, but agents accelerate that process &mdash; meaningful contributions come sooner.</p>
+          </div>
+          <div class="practice-card">
+            <h4>More gets reviewed, not less</h4>
+            <p>Output per engineer is increasing, which means review matters more than ever. Every change goes through review from multiple angles: code quality, test coverage, security and alignment with requirements.</p>
+          </div>
+          <div class="practice-card">
+            <h4>Security throughout</h4>
+            <p>Threat modelling agents work during planning, security analysis agents run static and dynamic checks throughout the build, and monitoring agents watch for issues that only surface at runtime. Security runs throughout because agents make it practical to do so.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Principles -->
+    <section class="chapter reveal" id="section-principles">
+      <div class="content-band">
+        <div class="content-band-header">
+          <h3>What We Hold To</h3>
+          <p>The principles that guide how we work with agentic tooling</p>
+        </div>
+        <div class="principles-grid">
+          <div class="principle-card">
+            <h4>The right approach for the right problem</h4>
+            <p>Not every task suits full delegation. Engineers develop a feel over time for what to hand off and what to keep. Some tasks suit complete agent delegation, others need direct human work. Most sit somewhere in between &mdash; knowing which is which is an engineering skill that compounds with experience.</p>
+          </div>
+          <div class="principle-card">
+            <h4>Continuous learning is built in</h4>
+            <p>Engineers who work with agents daily build practical knowledge that no course can teach, i.e. when to delegate, when to direct and when to do it by hand. That learning is supported through pairing, mentoring and communities of practice, but the deeper understanding comes from applying it.</p>
+          </div>
+          <div class="principle-card">
+            <h4>Honest about where it doesn't work</h4>
+            <p>Agentic tooling doesn't suit every task equally. Development agents can struggle with complex legacy systems and deep domain context. But even where implementation agents don't help, review, testing and security agents often still add value. The skill is knowing which agents add value where.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="closing-statement" style="margin-top: 64px;">
+        <blockquote><strong>AI-generated output can get you 80% of the way there.</strong> The last 20% is where engineering judgement matters most; spotting what's subtly wrong, understanding why, and knowing how to fix it. That skill comes from building software, and it only becomes more important in this model.</blockquote>
+        <blockquote>When engineers have agents working alongside them, teams can take on more ambitious problems, the scope of what's achievable grows, and engineers spend their time on the parts of software delivery that are most consequential: <strong>figuring out what to build, designing it well, and making sure it actually works for the people who use it.</strong></blockquote>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="chapter reveal" id="section-cta">
+      <div class="content-band">
+        <div class="content-band-header">
+          <h3>Ready to Transform Your Delivery Process?</h3>
+          <p>Let's discuss how agentic engineering can work for your team</p>
+        </div>
+        <div class="closing-statement">
+          <p style="text-align: center; margin-top: 48px;">Whether you're exploring how AI agents can fit into your workflow, or ready to adopt agentic practices across your delivery cycle, we'd be happy to talk through what makes sense for your context.</p>
+          <p style="text-align: center; margin-top: 32px;">
+            <a href="mailto:hello@instil.co" style="display: inline-block; padding: 16px 32px; background: var(--accent); color: var(--bg); text-decoration: none; border-radius: 4px; font-weight: 600; transition: opacity 0.2s;">Get in Touch</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Detail Drawer -->
+  <div class="detail-overlay" id="detailOverlay"></div>
+  <div class="detail-drawer" id="detailDrawer" role="dialog" aria-modal="true" aria-label="Agent detail">
+    <div class="drawer-header">
+      <button class="drawer-close" aria-label="Close">&times;</button>
+      <div id="drawerHeaderContent"></div>
+    </div>
+    <div class="drawer-body" id="drawerBodyContent"></div>
+  </div>
+</body>
+</html>

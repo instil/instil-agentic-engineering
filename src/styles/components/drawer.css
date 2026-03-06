@@ -1,0 +1,186 @@
+/* ── Detail drawer & overlay ── */
+
+.detail-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--overlay-bg);
+  z-index: 200;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.detail-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.detail-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 460px;
+  max-width: 92vw;
+  height: 100vh;
+  background: var(--bg-card);
+  border-left: 1px solid var(--border);
+  box-shadow: -10px 0 40px var(--drawer-shadow);
+  z-index: 210;
+  transform: translateX(104%);
+  transition: transform 0.35s var(--ease-out);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-drawer.active {
+  transform: translateX(0);
+}
+
+.drawer-header {
+  padding: 28px 28px 18px;
+  border-bottom: 1px solid var(--border-light);
+  position: sticky;
+  top: 0;
+  background: color-mix(in srgb, var(--bg-card) 92%, transparent);
+  z-index: 2;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.drawer-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.drawer-close:hover {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border-color: var(--text-muted);
+}
+
+.drawer-stage-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+
+.drawer-stage-badge.plan { background: var(--plan-light); color: var(--plan); border: 1px solid var(--plan-border); }
+.drawer-stage-badge.build { background: var(--build-light); color: var(--build); border: 1px solid var(--build-border); }
+.drawer-stage-badge.ship { background: var(--ship-light); color: var(--ship); border: 1px solid var(--ship-border); }
+
+.drawer-title {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  letter-spacing: -0.3px;
+}
+
+.drawer-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.drawer-body {
+  padding: 18px 28px 40px;
+  flex: 1;
+}
+
+.drawer-section {
+  margin-bottom: 28px;
+}
+
+.drawer-section-title {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.drawer-list-item {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  padding: 8px 0 8px 16px;
+  position: relative;
+  line-height: 1.5;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.drawer-list-item:last-child {
+  border-bottom: none;
+}
+
+.drawer-list-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 14px;
+  width: 6px;
+  height: 6px;
+  border-radius: 1px;
+  border: 1.5px solid var(--border);
+}
+
+.drawer-list-item.plan-item::before { border-color: var(--plan-border); background: var(--plan-light); }
+.drawer-list-item.build-item::before { border-color: var(--build-border); background: var(--build-light); }
+.drawer-list-item.ship-item::before { border-color: var(--ship-border); background: var(--ship-light); }
+
+.drawer-chip {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  margin: 2px 3px 2px 0;
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+.drawer-skill-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.drawer-skill-link:hover {
+  color: var(--text-primary);
+  border-color: var(--text-muted);
+  background: var(--bg);
+}

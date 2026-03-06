@@ -1,0 +1,23 @@
+/* ── Scroll progress bar ── */
+
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 140;
+  pointer-events: none;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--text-primary);
+  opacity: 0.18;
+  transition: width 0.15s linear;
+}
+
+[data-theme="dark"] .progress-bar-fill {
+  opacity: 0.22;
+}

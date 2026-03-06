@@ -1,0 +1,118 @@
+/* ── Artifacts flow lanes & handoffs ── */
+
+.flow-lanes {
+  background: var(--bg-card);
+  border-top: 1px solid var(--border-light);
+}
+
+.lane {
+  position: relative;
+  padding: 18px 24px 18px;
+  border-top: 1px solid var(--border-light);
+  overflow: hidden;
+}
+
+.lane:first-child {
+  border-top: none;
+}
+
+.lane::before {
+  content: '';
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent,
+    color-mix(in srgb, var(--text-muted) 22%, transparent),
+    transparent
+  );
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.lane-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.handoff-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 900;
+  white-space: nowrap;
+  flex-shrink: 0;
+  background: var(--neutral-pill-bg);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+.handoff-arrow {
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1;
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+
+.artifact-stream {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-width: 0;
+  align-items: center;
+}
+
+.artifact-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-light);
+  white-space: nowrap;
+  transition: transform 0.18s var(--ease-out), border-color 0.18s var(--ease-out);
+}
+
+.artifact-tag::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--text-muted) 50%, transparent);
+  opacity: 0.65;
+}
+
+.lane:hover .artifact-tag {
+  border-color: color-mix(in srgb, var(--text-muted) 35%, var(--border-light));
+  transform: translateY(-1px);
+}
+
+
+/* Feedback label */
+.handoff-feedback .lane-inner .feedback-label {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  white-space: nowrap;
+  flex-shrink: 0;
+}

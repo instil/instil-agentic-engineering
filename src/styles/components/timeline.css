@@ -1,0 +1,252 @@
+/* ── Delivery cycle – Stage Selector ── */
+
+.timeline {
+  background: var(--bg-card);
+}
+
+/* ── Stage selector row ── */
+
+.timeline-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  background: var(--border);
+  gap: 1px;
+}
+
+.timeline-tab {
+  background: var(--bg-card);
+  padding: 22px 28px 18px;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.18s var(--ease-out), opacity 0.18s var(--ease-out);
+  opacity: 0.5;
+}
+
+.timeline-tab:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: -2px;
+  opacity: 0.85;
+}
+
+.timeline-tab.active {
+  opacity: 1;
+}
+
+.timeline-tab:hover {
+  opacity: 0.85;
+  background: color-mix(in srgb, var(--bg-elevated) 70%, transparent);
+}
+
+.timeline-tab.active:hover {
+  opacity: 1;
+}
+
+.timeline-tab.active {
+  background: var(--neutral-light);
+}
+
+.timeline-tab::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--accent);
+  opacity: 0;
+  transition: height 0.18s var(--ease-out), opacity 0.18s var(--ease-out);
+}
+
+.timeline-tab.active::before {
+  height: 4px;
+  opacity: 1;
+}
+
+.timeline-tab .kicker {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: -0.2px;
+  transition: color 0.18s var(--ease-out);
+}
+
+.timeline-tab.active .kicker { color: var(--text-primary); }
+
+.timeline-tab .sub {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--text-muted);
+  transition: color 0.18s var(--ease-out);
+}
+
+.timeline-tab.active .sub { color: var(--text-secondary); }
+
+/* ── Single content area ── */
+
+/* ── Single content area ── */
+
+.stage-content {
+  position: relative;
+  border-top: 1px solid var(--border-light);
+}
+
+.timeline-panel {
+  background: var(--bg-card);
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  position: absolute;
+  inset: 0;
+  transition: none;
+}
+
+.timeline-panel.active {
+  position: static;
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+/* Forward: slide out left, slide in from right */
+.stage-content[data-direction="forward"] .timeline-panel.active {
+  animation: slideInFromRight 0.3s var(--ease-out);
+}
+
+/* Backward: slide out right, slide in from left */
+.stage-content[data-direction="backward"] .timeline-panel.active {
+  animation: slideInFromLeft 0.3s var(--ease-out);
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ── Stacked sections inside each panel ── */
+
+.phase-section {
+  padding: 22px 28px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.phase-section:last-child {
+  border-bottom: none;
+}
+
+/* Artifact output row */
+
+.panel-artifacts {
+  padding: 16px 28px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border-light);
+}
+
+.panel-artifacts-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-right: 4px;
+}
+
+/* ── Shared section styles ── */
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.section-label-icon {
+  width: 17px;
+  height: 17px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.human-section .section-label-icon {
+  background: var(--bg-elevated);
+  color: var(--human);
+  border: 1px solid var(--border);
+}
+
+.agent-section {
+  border-left: 2px solid var(--border);
+}
+
+.agent-section .section-label-icon {
+  background: var(--text-primary);
+  color: var(--bg-card);
+}
+
+.activity-item {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  padding: 4px 0 4px 12px;
+  position: relative;
+}
+
+.activity-item::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 12px;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+}
+
+.human-section .activity-item::before { background: var(--text-muted); opacity: 0.3; }
+.agent-section .activity-item::before { background: var(--accent); opacity: 0.4; }
+
+/* ── Cycle note ── */
+
+.cycle-note {
+  margin-top: 24px;
+  padding: 16px 28px;
+  background: var(--bg-elevated);
+  border-left: 3px solid var(--text-muted);
+  opacity: 0.85;
+}
+
+.cycle-note p {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.cycle-note strong {
+  color: var(--text-primary);
+  font-weight: 700;
+}

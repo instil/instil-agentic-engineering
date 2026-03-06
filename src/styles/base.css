@@ -1,0 +1,68 @@
+/* ── Reset & base ── */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500&family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
+  .reveal { transform: none !important; opacity: 1 !important; }
+  .detail-drawer, .detail-overlay, .handoff-detail, .timeline-track { transition: none !important; }
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text-primary);
+  min-height: 100vh;
+  padding: 60px 40px 96px;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.5s ease, color 0.3s ease;
+  position: relative;
+}
+
+/* Grid background pattern */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: 
+    linear-gradient(to right, oklch(0.2 0 0) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(0.2 0 0) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.3;
+}
+
+[data-theme="dark"] body::before {
+  opacity: 0.3;
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+}
+
+/* Reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.55s var(--ease-out), transform 0.55s var(--ease-out);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Custom selection color */
+::selection {
+  background: var(--accent);
+  color: var(--accent-foreground);
+}

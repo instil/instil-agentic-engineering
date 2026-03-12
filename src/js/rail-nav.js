@@ -63,13 +63,13 @@ export function initRailNav() {
   function onScroll() {
     const scrollY = window.scrollY;
     const viewportCenter = scrollY + (window.innerHeight / 2);
-    
+
     // Special case: if near top of page, activate intro
     if (scrollY < window.innerHeight / 3) {
       setActive('section-intro');
       return;
     }
-    
+
     let closestSection = sections[0];
     let closestDistance = Infinity;
 

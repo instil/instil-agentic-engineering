@@ -30,6 +30,6 @@
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 
   --content-max: 1320px;
-  --chapter-pad: 160px;
-  --chapter-pad-mobile: 96px;
+  --chapter-pad: 80px;
+  --chapter-pad-mobile: 60px;
 }

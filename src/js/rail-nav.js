@@ -9,7 +9,7 @@ export function initRailNav() {
 
   const items = Array.from(rail.querySelectorAll('.rail-pill'));
 
-  // Smooth-scroll on click: center the section in viewport
+  // Smooth-scroll on click: scroll section to top of viewport
   items.forEach((a) => {
     a.addEventListener('click', (e) => {
       e.preventDefault();
@@ -17,28 +17,13 @@ export function initRailNav() {
       const el = document.getElementById(id);
       if (!el) return;
 
-      // Special case: scroll to absolute top for intro
-      if (id === 'section-intro') {
-        window.scrollTo({ 
-          top: 0, 
-          behavior: 'smooth' 
-        });
-        return;
-      }
-
-      // Calculate position to center section in viewport
+      // Calculate position to place section at top of viewport
       const rect = el.getBoundingClientRect();
       const absoluteTop = window.scrollY + rect.top;
-      const elementCenter = absoluteTop + (rect.height / 2);
-      const viewportCenter = window.innerHeight / 2;
-      let targetY = elementCenter - viewportCenter;
-
-      // Clamp to document bounds
-      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      targetY = Math.max(0, Math.min(targetY, maxScroll));
-
+      
+      // Scroll to position section at top
       window.scrollTo({ 
-        top: targetY, 
+        top: absoluteTop, 
         behavior: 'smooth' 
       });
     });

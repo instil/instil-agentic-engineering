@@ -9,13 +9,13 @@
 
 /* Chapter pacing */
 .chapter {
-  padding: var(--chapter-pad) 0;
+  padding: calc(var(--chapter-pad) / 2) 0;
   scroll-margin-top: 0;
 }
 
 .chapter:first-of-type {
   padding-top: 0;
-  padding-bottom: 120px;
+  padding-bottom: 60px;
 }
 
 /* Brand Block */
@@ -26,6 +26,7 @@
 .brand-logo {
   height: 42px;
   width: auto;
+  max-width: 200px;
   object-fit: contain;
   opacity: 0.85;
   display: block;
@@ -50,28 +51,88 @@
 }
 
 /* Intro Block */
-.intro-block {
-  max-width: 650px;
-  margin-left: 0;
+#section-intro {
+  position: relative;
+  overflow: visible;
+  min-height: 65vh;
+  display: flex;
+  align-items: center;
 }
 
-.intro-block h1 {
+/* Agent field SVG — absolutely fills the hero, sits behind text */
+.agent-field-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: visible;
+}
+
+/* Intro Block contents */
+.intro-block {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  width: 100%;
+  padding: 80px 0 60px;
+}
+
+/* Hero title — Agentic */
+.agentic-title {
+  text-align: center;
+  margin: 0 auto 0.1em auto;
   font-family: var(--font-heading);
-  font-size: 52px;
+  font-size: clamp(3.2rem, 7vw, 8.5rem);
   font-weight: 500;
   color: var(--text-primary);
-  line-height: 1.1;
-  margin-top: 15vh;
-  margin-bottom: 32px;
-  letter-spacing: -1.2px;
-  cursor: pointer;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
 }
 
-.intro-block h1 #splitFlapTitle {
-  display: inline-block;
-  position: relative;
-  min-width: 240px;
-  text-align: left;
+/* Split-flap animated word — same visual weight as title */
+.splitflap-hero {
+  font-family: var(--font-heading);
+  font-size: clamp(3.2rem, 7vw, 8.5rem);
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin-bottom: 40px;
+  /* Lock height so layout doesn't jump when word is cleared between cycles */
+  min-height: 1.15em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.limited-width {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
+  text-align: center;
+  transform: translateY(80px);
+}
+
+.intro-block .intro-tagline {
+  font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+  color: var(--text-secondary);
+  line-height: 1.5;
+  font-weight: 300;
+  max-width: 520px;
+  margin-bottom: 24px;
+}
+
+.section-lead {
+  font-size: 17px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-weight: 400;
+  max-width: var(--content-max);
+  padding-left: 40px;
+  margin-bottom: 32px;
 }
 
 .intro-block p {
@@ -79,6 +140,14 @@
   color: var(--text-secondary);
   line-height: 1.6;
   font-weight: 400;
+  text-align: center;
+}
+
+.verb-cycle {
+  display: inline-flex;
+  align-items: baseline;
+  color: var(--text-primary);
+  font-weight: 500;
 }
 
 /* Content band */
@@ -92,37 +161,41 @@
 }
 
 .content-band-header {
-  padding: 22px 28px;
+  padding: 48px 40px;
   border-bottom: 1px solid var(--border-light);
-  background: var(--bg-card);
+  background: var(--bg);
 }
 
 .content-band-header h3 {
   font-family: var(--font-heading);
-  font-size: 20px;
-  font-weight: 500;
+  font-size: clamp(1.6rem, 2.5vw, 2.6rem);
+  font-weight: 300;
   color: var(--text-primary);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
 }
 
 .content-band-header p {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--text-muted);
-  margin-top: 3px;
+  margin-top: 10px;
+  line-height: 1.6;
 }
 
 /* Subsection header */
 .subsection-header {
-  padding: 20px 28px 16px;
+  padding: 32px 40px 24px;
   border-top: 1px solid var(--border);
   background: var(--bg-card);
 }
 
 .subsection-header h4 {
   font-family: var(--font-heading);
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.2px;
   color: var(--text-primary);
-  margin-bottom: 2px;
+  margin-bottom: 4px;
 }
 
 .subsection-header p {
@@ -138,14 +211,14 @@
   grid-template-columns: 1.2fr 0.8fr;
   gap: 64px;
   align-items: center;
-  padding: 48px 28px;
+  padding: 48px 40px;
 }
 
 .closing-statement blockquote {
-  font-size: 14px;
+  font-size: 16px;
   font-style: italic;
   color: var(--text-secondary);
-  line-height: 1.65;
+  line-height: 1.7;
   font-weight: 400;
   margin: 0;
 }
@@ -180,7 +253,7 @@
 
 /* CTA Content */
 .cta-content {
-  padding: 28px;
+  padding: 40px;
   max-width: 800px;
 }
 

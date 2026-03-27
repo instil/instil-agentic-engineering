@@ -1,6 +1,11 @@
 /* ── Reset & base ── */
 
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+html {
+  background: #0a0a0a;
+  color-scheme: dark;
+}
 
 * {
   margin: 0;
@@ -19,7 +24,7 @@ body {
   background: var(--bg);
   color: var(--text-primary);
   min-height: 100vh;
-  padding: 30px 40px 96px;
+  padding: 32px 40px 96px;
   padding-right: 180px; /* Extra space for rail nav */
   -webkit-font-smoothing: antialiased;
   transition: background 0.5s ease, color 0.3s ease;

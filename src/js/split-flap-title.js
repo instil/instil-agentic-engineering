@@ -7,12 +7,20 @@ import gsap from 'gsap';
 
 const CHARSET = '?:+-*/%=<>!&|^~.,:;{}[]()@#$_\\'.split('');
 const WORDS = ['Engineering', 'Delivery', 'Planning', 'Security', 'Operations'];
-const WORD_HOLD_DURATION = 600; // ms to show completed word
+const WORD_HOLD_DURATION = 1600; // ms to show completed word
 const WHITE_BOX_DURATION = 20; // ms to show white box
 const TERNARY_FLIPS = 2; // number of ternary character flips
 const FLIP_SPEED = 20; // ms per flip
 
 let wordRotationRunning = false;
+let _wordChangeListener = null;
+let _wordStartListener  = null;
+
+/** Register a callback that fires when a new word is fully revealed. */
+export function onWordChange(fn) { _wordChangeListener = fn; }
+
+/** Register a callback that fires at the moment a new word begins animating in. */
+export function onWordStart(fn)  { _wordStartListener  = fn; }
 
 function createCharSpan(char) {
   const span = document.createElement('span');
@@ -84,6 +92,8 @@ function revealWord(titleElement, word, callback) {
 
   function revealNext() {
     if (currentIndex >= chars.length) {
+      // Word complete — fire listener before cursor + hold
+      _wordChangeListener?.(word);
       // Word complete, show cursor
       const cursorSpan = document.createElement('span');
       cursorSpan.className = 'split-flap-cursor';
@@ -137,6 +147,9 @@ function runWordRotation(titleElement) {
     const word = WORDS[currentIndex % WORDS.length];
     currentIndex++;
 
+    // Fire at the START so formations can assemble while letters are appearing
+    _wordStartListener?.(word);
+
     revealWord(titleElement, word, () => {
       // After word is shown and held, clear it and show next
       clearWord(titleElement);
@@ -149,12 +162,7 @@ function runWordRotation(titleElement) {
 
 export function initSplitFlapTitle() {
   const titleElement = document.getElementById('splitFlapTitle');
-  const wrapperElement = document.getElementById('titleWrapper');
   if (!titleElement) return;
-
-  // Set inline-flex for proper layout
-  titleElement.style.display = 'inline-flex';
-  titleElement.style.minWidth = '240px';
 
   // Check for reduced motion
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');

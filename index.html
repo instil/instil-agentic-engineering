@@ -6,9 +6,20 @@
   <title>Agentic Software Delivery Lifecycle</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-  <!-- FOUC prevention: set dark theme before first paint -->
+  <!-- Critical inline styles: prevent SVG/content flash before stylesheet loads -->
+  <style>
+    html { background: #0a0a0a; color-scheme: dark; }
+    .team-role-icon { width: 32px; height: 32px; overflow: hidden; }
+    .team-role-icon svg { width: 32px; height: 32px; }
+    .section-label-icon svg { width: 16px; height: 16px; }
+    svg { max-width: 100%; }
+  </style>
+
+  <!-- FOUC prevention: set dark theme and black bg before first paint -->
   <script>
     document.documentElement.setAttribute('data-theme', 'dark');
+    document.documentElement.style.background = '#0a0a0a';
+    document.documentElement.style.colorScheme = 'dark';
   </script>
 
   <script type="module" src="/src/main.js"></script>
@@ -23,15 +34,18 @@
     <div class="page-grid">
       <!-- Brand Block -->
       <div class="brand-block">
-        <img src="/Instil_wordmark_white.png" alt="Instil" class="brand-logo" />
+        <img src="/Instil_wordmark_white.png" alt="Instil" class="brand-logo" style="height:42px;width:auto;display:block;" />
         <div class="brand-subline">Delivery Framework</div>
       </div>
 
       <!-- Intro -->
       <section class="chapter reveal is-visible" id="section-intro">
       <div class="intro-block">
-        <h1 id="titleWrapper">Agentic <span id="splitFlapTitle"></span></h1>
-        <p>AI agents have changed how we deliver at Instil, from discovery through to production. Instillers own the problem space, the architecture and the judgement calls. Agents accelerate everything in between. The results for our customers are clear:</p>
+        <h1 class="agentic-title">Agentic</h1>
+        <div id="splitFlapTitle" class="splitflap-hero"></div>
+        <p class="intro-desc limited-width">
+          AI agents have changed how we deliver at Instil, from discovery through to production. Instillers own the problem space, the architecture and the judgement calls. Agents accelerate everything in between. The results for our customers are clear:
+        </p>
       </div>
     </section>
 
@@ -39,26 +53,32 @@
     <section class="chapter reveal" id="section-team">
       <div class="content-band">
         <div class="content-band-header">
-          <h3>Agent-Powered Delivery</h3>
+          <h3>Agent-powered delivery</h3>
           <p>AI can now do real engineering work. Not just autocomplete in an editor, but whole tasks: implementing features from a spec, generating and running test suites, reviewing code for security issues, monitoring production systems, and more. That changes what a delivery team looks like.</p>
         </div>
         <div class="delivery-team-grid">
           <div class="team-role engineers">
             <div class="team-role-label">
-              <div class="team-role-icon">I</div>
+              <div class="team-role-icon">
+                <svg viewBox="0 0 2554.1 2439.2" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" d="M1277.1,20.1C581.6,20.1,17.8,583.9,17.8,1279.4s295.7,938.2,722.9,1139.6V630.6h1065c-42.6,251.4-386.3,840.8-969.1,996.7v59.4h977v732.3c427.1-201.5,722.7-636,722.7-1139.6S1972.5,20.1,1277.1,20.1Z"/>
+                </svg>
+              </div>
               <div class="team-role-name">Instillers</div>
             </div>
             <p>Own the technical direction, the architecture and are accountable for what ships. They run discovery, make design decisions and review every piece of agent output. The focus is on understanding the domain, the constraints and making sure what gets built really does solve the problem.</p>
           </div>
           <div class="team-role agents">
             <div class="team-role-label">
-              <div class="team-role-icon">A</div>
+              <div class="team-role-icon">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" d="M12 1C11.4 1 11 1.4 11 2V6H4C2.9 6 2 6.9 2 8V20C2 21.1 2.9 22 4 22H20C21.1 22 22 21.1 22 20V8C22 6.9 21.1 6 20 6H13V2C13 1.4 12.6 1 12 1ZM7 10C6.4 10 6 10.4 6 11V15C6 15.6 6.4 16 7 16H10C10.6 16 11 15.6 11 15V11C11 10.4 10.6 10 10 10H7ZM14 10C13.4 10 13 10.4 13 11V15C13 15.6 13.4 16 14 16H17C17.6 16 18 15.6 18 15V11C18 10.4 17.6 10 17 10H14Z"/></svg>
+              </div>
               <div class="team-role-name">Agents</div>
             </div>
             <p>Work across the full delivery cycle, from research and requirements through implementation, testing and production monitoring. Defined as reusable skills, they coordinate across tasks and run in parallel, taking on code generation, test writing and routine analysis. Instillers spend less time on mechanical work and more on the problems that require judgement.</p>
           </div>
         </div>
-        <p style="margin-top: 32px; margin-bottom: 32px; padding: 0 28px; font-size: 15px; line-height: 1.7; color: var(--text-secondary);">The result is that the barrier to building is lower than it has ever been, and that cuts both ways. Instil delivery teams who understand the problem deeply are the difference between shipping the right thing and vibe coding.</p>
+        <p style="margin-top: 32px; margin-bottom: 32px; padding: 0 40px; font-size: 15px; line-height: 1.7; color: var(--text-secondary);">The result is that the barrier to building is lower than it has ever been, and that cuts both ways. Instil delivery teams who understand the problem deeply are the difference between shipping the right thing and vibe coding.</p>
       </div>
     </section>
 
@@ -66,7 +86,7 @@
     <section class="chapter reveal" id="section-cycle">
       <div class="content-band">
         <div class="content-band-header">
-          <h3>How It Works</h3>
+          <h3>How it works</h3>
           <p>Every change follows the same delivery cycle: plan, build, ship. Our teams direct each stage and agents accelerate it, handling the volume of work that would otherwise limit what gets delivered.</p>
         </div>
 
@@ -91,7 +111,7 @@
             <div class="timeline-panel plan active" data-stage="plan" role="tabpanel" aria-label="Plan stage">
               <div class="phase-section human-section">
                 <div class="section-label">
-                  <span class="section-label-icon">E</span>
+                  <span class="section-label-icon"><svg viewBox="0 0 2554.1 2439.2" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M1277.1,20.1C581.6,20.1,17.8,583.9,17.8,1279.4s295.7,938.2,722.9,1139.6V630.6h1065c-42.6,251.4-386.3,840.8-969.1,996.7v59.4h977v732.3c427.1-201.5,722.7-636,722.7-1139.6S1972.5,20.1,1277.1,20.1Z"/></svg></span>
                   Instiller Activities
                 </div>
                 <div class="activity-item">Lead discovery, assess technical feasibility, decide approach &amp; sequencing</div>
@@ -101,7 +121,7 @@
 
               <div class="phase-section agent-section">
                 <div class="section-label">
-                  <span class="section-label-icon">A</span>
+                  <span class="section-label-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" d="M12 1C11.4 1 11 1.4 11 2V6H4C2.9 6 2 6.9 2 8V20C2 21.1 2.9 22 4 22H20C21.1 22 22 21.1 22 20V8C22 6.9 21.1 6 20 6H13V2C13 1.4 12.6 1 12 1ZM7 10C6.4 10 6 10.4 6 11V15C6 15.6 6.4 16 7 16H10C10.6 16 11 15.6 11 15V11C11 10.4 10.6 10 10 10H7ZM14 10C13.4 10 13 10.4 13 11V15C13 15.6 13.4 16 14 16H17C17.6 16 18 15.6 18 15V11C18 10.4 17.6 10 17 10H14Z"/></svg></span>
                   Agent Activities
                 </div>
                 <div class="activity-item">Capture workshop outputs into structured requirements &amp; user stories</div>
@@ -110,11 +130,7 @@
               </div>
 
               <div class="phase-section agent-section">
-                <div class="section-label">
-                  <span class="section-label-icon">S</span>
-                  Our Agents
-                </div>
-                <div class="agents-grid">
+                <div class="agents-grid" style="margin-top: 18px;">
                   <span class="agent-pill" role="button" tabindex="0" data-agent="meeting-summary">
                     <svg class="pill-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/><line x1="4" y1="4.5" x2="8" y2="4.5" stroke="currentColor" stroke-width="1"/><line x1="4" y1="6.5" x2="7" y2="6.5" stroke="currentColor" stroke-width="1"/><line x1="4" y1="8" x2="6" y2="8" stroke="currentColor" stroke-width="1"/></svg>
                     Meeting Summary
@@ -156,7 +172,7 @@
             <div class="timeline-panel build" data-stage="build" role="tabpanel" aria-label="Build stage">
               <div class="phase-section human-section">
                 <div class="section-label">
-                  <span class="section-label-icon">E</span>
+                  <span class="section-label-icon"><svg viewBox="0 0 2554.1 2439.2" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M1277.1,20.1C581.6,20.1,17.8,583.9,17.8,1279.4s295.7,938.2,722.9,1139.6V630.6h1065c-42.6,251.4-386.3,840.8-969.1,996.7v59.4h977v732.3c427.1-201.5,722.7-636,722.7-1139.6S1972.5,20.1,1277.1,20.1Z"/></svg></span>
                   Instiller Activities
                 </div>
                 <div class="activity-item">Own system architecture, e.g. service boundaries, data models, integration patterns</div>
@@ -166,7 +182,7 @@
 
               <div class="phase-section agent-section">
                 <div class="section-label">
-                  <span class="section-label-icon">A</span>
+                  <span class="section-label-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" d="M12 1C11.4 1 11 1.4 11 2V6H4C2.9 6 2 6.9 2 8V20C2 21.1 2.9 22 4 22H20C21.1 22 22 21.1 22 20V8C22 6.9 21.1 6 20 6H13V2C13 1.4 12.6 1 12 1ZM7 10C6.4 10 6 10.4 6 11V15C6 15.6 6.4 16 7 16H10C10.6 16 11 15.6 11 15V11C11 10.4 10.6 10 10 10H7ZM14 10C13.4 10 13 10.4 13 11V15C13 15.6 13.4 16 14 16H17C17.6 16 18 15.6 18 15V11C18 10.4 17.6 10 17 10H14Z"/></svg></span>
                   Agent Activities
                 </div>
                 <div class="activity-item">Implement from specs and user stories across parallel workstreams</div>
@@ -175,11 +191,7 @@
               </div>
 
               <div class="phase-section agent-section">
-                <div class="section-label">
-                  <span class="section-label-icon">S</span>
-                  Our Agents
-                </div>
-                <div class="agents-grid">
+                <div class="agents-grid" style="margin-top: 18px;">
                   <span class="agent-pill" role="button" tabindex="0" data-agent="code-impl">
                     <svg class="pill-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 3L2 6L4 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 3L10 6L8 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     Code Implementation
@@ -224,7 +236,7 @@
             <div class="timeline-panel ship" data-stage="ship" role="tabpanel" aria-label="Ship stage">
               <div class="phase-section human-section">
                 <div class="section-label">
-                  <span class="section-label-icon">E</span>
+                  <span class="section-label-icon"><svg viewBox="0 0 2554.1 2439.2" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M1277.1,20.1C581.6,20.1,17.8,583.9,17.8,1279.4s295.7,938.2,722.9,1139.6V630.6h1065c-42.6,251.4-386.3,840.8-969.1,996.7v59.4h977v732.3c427.1-201.5,722.7-636,722.7-1139.6S1972.5,20.1,1277.1,20.1Z"/></svg></span>
                   Instiller Activities
                 </div>
                 <div class="activity-item">Design the observability strategy</div>
@@ -234,7 +246,7 @@
 
               <div class="phase-section agent-section">
                 <div class="section-label">
-                  <span class="section-label-icon">A</span>
+                  <span class="section-label-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" d="M12 1C11.4 1 11 1.4 11 2V6H4C2.9 6 2 6.9 2 8V20C2 21.1 2.9 22 4 22H20C21.1 22 22 21.1 22 20V8C22 6.9 21.1 6 20 6H13V2C13 1.4 12.6 1 12 1ZM7 10C6.4 10 6 10.4 6 11V15C6 15.6 6.4 16 7 16H10C10.6 16 11 15.6 11 15V11C11 10.4 10.6 10 10 10H7ZM14 10C13.4 10 13 10.4 13 11V15C13 15.6 13.4 16 14 16H17C17.6 16 18 15.6 18 15V11C18 10.4 17.6 10 17 10H14Z"/></svg></span>
                   Agent Activities
                 </div>
                 <div class="activity-item">Monitor environments continuously, detect anomalies in real time</div>
@@ -243,11 +255,7 @@
               </div>
 
               <div class="phase-section agent-section">
-                <div class="section-label">
-                  <span class="section-label-icon">S</span>
-                  Our Agents
-                </div>
-                <div class="agents-grid">
+                <div class="agents-grid" style="margin-top: 18px;">
                   <span class="agent-pill" role="button" tabindex="0" data-agent="env-monitor">
                     <svg class="pill-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 6H3L4 4L6 8L8 5L9 6H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     Environment Monitor
@@ -284,29 +292,26 @@
     <!-- Crosscut Concerns -->
     <section class="chapter reveal" id="section-crosscut">
       <div class="content-band">
-        <div class="subsection-header">
-          <h4>Embedded at Every Stage</h4>
+      <div class="content-band-header">
+          <h3>Embedded at every stage</h3>
           <p>Review, quality and security are built into every phase, not bolted on at the end</p>
         </div>
 
         <div class="crosscut-pillars">
           <div class="crosscut-pillar human-review">
             <div class="pillar-label">
-              <div class="pillar-icon-box">E</div>
               <div class="pillar-name">Review</div>
             </div>
             <p class="pillar-description">More output means review matters more. Every artefact and every change gets reviewed from multiple angles: code quality, test coverage, security, and alignment with requirements. Agents run these checks in parallel, but the team makes the final call on what ships.</p>
           </div>
           <div class="crosscut-pillar quality">
             <div class="pillar-label">
-              <div class="pillar-icon-box">Q</div>
               <div class="pillar-name">Quality</div>
             </div>
             <p class="pillar-description">Static analysis, automated tests and requirements validation run continuously across every phase. Agents check alignment with specs, flag regressions and surface gaps so nothing slips through quietly.</p>
           </div>
           <div class="crosscut-pillar security">
             <div class="pillar-label">
-              <div class="pillar-icon-box">S</div>
               <div class="pillar-name">Security</div>
             </div>
             <p class="pillar-description">Threat modelling agents work during planning, security analysis agents run static and dynamic checks throughout the build, and monitoring agents watch for issues that only surface at runtime. Security runs throughout delivery because our agents make it practical to do so.</p>
@@ -320,7 +325,7 @@
     <section class="chapter reveal" id="section-practice">
       <div class="content-band">
         <div class="content-band-header">
-          <h3>What We Hold To</h3>
+          <h3>What we hold to</h3>
           <p>How we approach agentic delivery across every engagement</p>
         </div>
         <div class="in-practice-grid">
@@ -354,7 +359,7 @@
     <section class="chapter reveal" id="section-cta">
       <div class="content-band">
         <div class="content-band-header">
-          <h3>AI agents have changed how we deliver at Instil</h3>
+          <h3>AI agents have changed how we <span id="verbCycle" class="verb-cycle">deliver</span> at Instil</h3>
           <p>From discovery through to production, Instillers own the problem space, the architecture and the judgement calls. Agents accelerate everything in between.</p>
         </div>
         <div class="cta-content">

@@ -24,12 +24,12 @@
   --overlay-bg: rgba(0, 0, 0, 0.5);
   --drawer-shadow: rgba(0, 0, 0, 0.25);
 
-  --font-heading: "IBM Plex Sans", Inter, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --font-heading: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   --font-body: Inter, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 
   --content-max: 1320px;
-  --chapter-pad: 80px;
-  --chapter-pad-mobile: 60px;
+  --chapter-pad: 120px;
+  --chapter-pad-mobile: 80px;
 }

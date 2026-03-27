@@ -15,7 +15,7 @@
 
 .timeline-tab {
   background: var(--bg-card);
-  padding: 22px 28px 18px;
+  padding: 24px 40px 20px;
   position: relative;
   cursor: pointer;
   user-select: none;
@@ -63,8 +63,8 @@
 
 .timeline-tab .kicker {
   font-family: var(--font-heading);
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 400;
   color: var(--text-muted);
   letter-spacing: -0.2px;
   transition: color 0.18s var(--ease-out);
@@ -142,7 +142,7 @@
 /* ── Stacked sections inside each panel ── */
 
 .phase-section {
-  padding: 22px 28px;
+  padding: 24px 40px;
   border-bottom: 1px solid var(--border-light);
 }
 
@@ -153,7 +153,7 @@
 /* Artifact output row */
 
 .panel-artifacts {
-  padding: 16px 28px;
+  padding: 16px 40px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -191,57 +191,83 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 9px;
-  font-weight: 900;
+  flex-shrink: 0;
+}
+
+.section-label-icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .human-section .section-label-icon {
-  background: var(--bg-elevated);
-  color: var(--human);
-  border: 1px solid var(--border);
+  color: var(--text-primary);
 }
 
 .agent-section {
-  border-left: 2px solid var(--border);
+  border-left: none;
 }
 
 .agent-section .section-label-icon {
-  background: var(--text-primary);
-  color: var(--bg-card);
+  color: var(--text-primary);
 }
 
 .activity-item {
-  font-size: 13.5px;
+  font-size: 15px;
   color: var(--text-secondary);
-  line-height: 1.45;
-  padding: 4px 0 4px 12px;
+  line-height: 1.6;
+  padding: 5px 0 5px 20px;
   position: relative;
 }
 
 .activity-item::before {
   content: '';
   position: absolute;
-  left: 0; top: 12px;
-  width: 4px; height: 4px;
+  left: 2px; top: 13px;
+  width: 5px; height: 5px;
   border-radius: 50%;
+  box-shadow: 0 0 0 0 currentColor;
 }
 
-.human-section .activity-item::before { background: var(--text-muted); opacity: 0.3; }
-.agent-section .activity-item::before { background: #3a7bff; opacity: 0.5; }
+.activity-item::after {
+  content: '';
+  position: absolute;
+  left: 0px; top: 11px;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  opacity: 0;
+  animation: node-pulse 3s ease-out infinite;
+}
+
+@keyframes node-pulse {
+  0%   { transform: scale(0.6); opacity: 0.5; }
+  70%  { transform: scale(2.0); opacity: 0; }
+  100% { transform: scale(2.0); opacity: 0; }
+}
+
+/* Stagger so they don't all pulse together */
+.activity-item:nth-child(2)::after { animation-delay: 1s; }
+.activity-item:nth-child(3)::after { animation-delay: 2s; }
+
+.human-section .activity-item::before { background: var(--text-muted); opacity: 0.35; }
+.human-section .activity-item::after  { background: var(--text-muted); }
+
+.agent-section .activity-item::before { background: #3a7bff; opacity: 0.85; box-shadow: 0 0 6px 1px rgba(58,123,255,0.45); }
+.agent-section .activity-item::after  { background: #3a7bff; }
 
 /* ── Cycle note ── */
 
 .cycle-note {
   margin-top: 24px;
-  padding: 16px 28px;
+  padding: 16px 40px;
   background: var(--bg-elevated);
   border-left: 3px solid var(--text-muted);
   opacity: 0.85;
 }
 
 .cycle-note p {
-  font-size: 13px;
-  line-height: 1.55;
+  font-size: 15px;
+  line-height: 1.65;
   color: var(--text-secondary);
   margin: 0;
 }

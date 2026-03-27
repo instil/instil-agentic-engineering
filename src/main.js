@@ -25,9 +25,13 @@ import { initDrawer } from './js/drawer.js';
 import { initProgress } from './js/progress.js';
 import { initReveal } from './js/reveal.js';
 import { initAnimatedNoise } from './js/animated-noise.js';
-import { initSplitFlapTitle } from './js/split-flap-title.js';
+import { initSplitFlapTitle, onWordChange, onWordStart } from './js/split-flap-title.js';
 import { initGridInteraction } from './js/grid-interaction.js';
 import { initAgentSparkle } from './js/agent-sparkle.js';
+import { initSignalFlow } from './js/signal-flow.js';
+import { initAgentField } from './js/agent-field.js';
+
+import { initVerbCycle } from './js/verb-cycle.js';
 
 // ── Boot ──
 initTimeline();
@@ -38,4 +42,7 @@ initReveal();
 initAnimatedNoise();
 initSplitFlapTitle();
 initGridInteraction();
+initSignalFlow();
 initAgentSparkle();
+initAgentField(onWordStart);
+initVerbCycle();

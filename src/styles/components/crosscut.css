@@ -5,23 +5,28 @@
   grid-template-columns: 1fr 1fr 1fr;
   background: var(--border);
   gap: 1px;
+  position: relative; /* contain the absolute-positioned canvas */
+}
+
+/* Canvas injected by signal-flow.js — absolute so it's out of grid flow */
+.signal-rail-canvas {
+  position: absolute;
+  top: -24px;
+  left: 0;
+  width: 100%;
+  height: 48px;
+  pointer-events: none;
+  z-index: 2;
+  display: block;
 }
 
 .crosscut-pillar {
-  padding: 22px 28px;
+  padding: 44px 40px 40px; /* top clearance: 24px below-rail canvas + 20px breathing room */
   position: relative;
   background: var(--bg-card);
+  transition: background 0.3s ease;
 }
 
-.crosscut-pillar::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #7a3cff 0%, #3a7bff 50%, #2ec7c9 100%);
-}
 
 .pillar-label {
   display: flex;
@@ -46,14 +51,16 @@
 
 .pillar-name {
   font-family: var(--font-heading);
-  font-size: 14px;
-  font-weight: 800;
+  font-size: clamp(1.2rem, 1.8vw, 1.7rem);
+  font-weight: 300;
+  letter-spacing: -0.03em;
   color: var(--text-primary);
+  line-height: 1;
 }
 
 .pillar-description {
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 15px;
+  line-height: 1.7;
   color: var(--text-secondary);
   margin: 0;
 }
